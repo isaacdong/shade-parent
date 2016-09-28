@@ -9,18 +9,28 @@
 
 	<groupId>io.istk</groupId>
 	<artifactId>shade</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>${project.parent.version}</version>
 	<packaging>jar</packaging>
 	<name>${project.artifactId}</name>
-
+	<dependencies>
+		<dependency>
+			<groupId>io.istk</groupId>
+			<artifactId>shade-common</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
+				<configuration>
+					<excludeResources>true</excludeResources>
+				</configuration>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
 						<phase>package</phase>
+						<goals> <goal>jar</goal> </goals>
 					</execution>
 				</executions>
 			</plugin>
@@ -36,7 +46,7 @@
 						</goals>
 						<configuration>
 							<createSourcesJar>true</createSourcesJar>
-							<shadeSourcesContent>true</shadeSourcesContent>
+							<shadeSourcesContent>false</shadeSourcesContent>
 							<promoteTransitiveDependencies>true</promoteTransitiveDependencies>
 							<artifactSet>
 								<includes>
@@ -50,3 +60,4 @@
 		</plugins>
 	</build>
 </project>
+
